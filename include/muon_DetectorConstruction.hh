@@ -9,16 +9,14 @@ class G4LogicalVolume;
 
 class muon_DetectorConstruction : public G4VUserDetectorConstruction
 {
-  public:
-    muon_DetectorConstruction();
-    virtual ~muon_DetectorConstruction();
+    public:
+        muon_DetectorConstruction();
+        virtual ~muon_DetectorConstruction();
+        virtual G4VPhysicalVolume* Construct();
 
-    virtual G4VPhysicalVolume* Construct();
+        G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
 
-    G4LogicalVolume* GetScoringVolume() const { return fScoringVolume; }
-
-  protected:
-    G4LogicalVolume*  fScoringVolume;
+    protected:
+        G4LogicalVolume*  fScoringVolume;
 };
-
 #endif
