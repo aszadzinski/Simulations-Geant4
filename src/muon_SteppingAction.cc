@@ -1,11 +1,14 @@
 #include "muon_SteppingAction.hh"
 #include "muon_EventAction.hh"
 #include "muon_DetectorConstruction.hh"
+#include "G4ParticleDefinition.hh"
+#include "G4ParticleTypes.hh"
 
 #include "G4Step.hh"
 #include "G4Event.hh"
 #include "G4RunManager.hh"
 #include "G4LogicalVolume.hh"
+
 
 muon_SteppingAction::muon_SteppingAction(muon_EventAction* eventAction)
 : G4UserSteppingAction(),
@@ -16,21 +19,30 @@ muon_SteppingAction::muon_SteppingAction(muon_EventAction* eventAction)
 muon_SteppingAction::~muon_SteppingAction()
 {}
 
-void muon_SteppingAction::UserSteppingAction(const G4Step* step)
+void muon_SteppingAction::UserSteppingAction(const G4Step* theStep)
 {
-  if (!fScoringVolume) {
-    const muon_DetectorConstruction* detectorConstruction
-      = static_cast<const muon_DetectorConstruction*>
-        (G4RunManager::GetRunManager()->GetUserDetectorConstruction());
-    fScoringVolume = detectorConstruction->GetScoringVolume();
+	G4Track *theTrack = theStep->GetTrack();
+
+  G4int ParticleType = theTrack->GetDefinition()->GetPDGEncoding();
+  G4StepPoint * thePrePoint = theStep->GetPreStepPoint();
+  G4VPhysicalVolume * thePrePV = thePrePoint->GetPhysicalVolume();
+  G4StepPoint * thePostPoint = theStep->GetPostStepPoint();
+  G4VPhysicalVolume * thePostPV = thePostPoint->GetPhysicalVolume();
+  G4String thePrePVname = thePrePV->GetName();
+  G4String thePostPVname="nnnnn";
+  G4int lastParticle = 0;
+  if(thePostPV !=0 ){ thePostPVname = thePostPV->GetName(); }
+  if (theStep->GetTotalEnergyDeposit()==0) {return;}
+
+  if (thePrePVname(0,4)=="LDet")
+  {
+    fEventAction->SetEdep(theStep->GetTotalEnergyDeposit());
+    fEventAction->SetPos(theTrack->GetPosition().x(),
+                          theTrack->GetPosition().y(),
+                          theTrack->GetPosition().z());
+    fEventAction->SetdFlag(0.);
+
   }
+  return;
 
-  G4LogicalVolume* volume
-    = step->GetPreStepPoint()->GetTouchableHandle()
-      ->GetVolume()->GetLogicalVolume();
-
-  if (volume != fScoringVolume) return;
-
-  G4double edepStep = step->GetTotalEnergyDeposit();
-  fEventAction->AddEdep(edepStep);
 }

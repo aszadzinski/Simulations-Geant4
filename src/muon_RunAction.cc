@@ -36,14 +36,14 @@ void muon_RunAction::EndOfRunAction(const G4Run* run)
   if (IsMaster()) {
     G4cout
      << G4endl
-     << "--------------------End of Global Run-----------------------";
+     << "--------------------End of Global Run-----------------------"
+     << G4endl;
   }
 
   G4cout
-     << "Edep:"
+     << "->Sum Edep ="
      << edep
      <<"MeV?"
-     << "------------------------------------------------------------"
      << G4endl;
 }
 

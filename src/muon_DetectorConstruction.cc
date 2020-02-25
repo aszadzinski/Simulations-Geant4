@@ -53,9 +53,9 @@ G4VPhysicalVolume* muon_DetectorConstruction::Construct()
 
     //Detector
     G4Box* detectorShape = new G4Box("Detector", detx, dety, dety);
-    G4LogicalVolume* logicDetector = new G4LogicalVolume(detectorShape, BC408, "DetectorL");
-    G4PVPlacement *physDetectorL =  new G4PVPlacement(0, posL, logicDetector, "DetectorL", logicWorld, false, 0, checkOverlaps);
-    G4PVPlacement *physDetectorR =  new G4PVPlacement(0, posR, logicDetector, "DetectorR", logicWorld, false, 0, checkOverlaps);
+    G4LogicalVolume* logicDetector = new G4LogicalVolume(detectorShape, BC408, "LDetector");
+    G4PVPlacement *physDetectorL =  new G4PVPlacement(0, posL, logicDetector, "LDetector", logicWorld, false, 0, checkOverlaps);
+    G4PVPlacement *physDetectorR =  new G4PVPlacement(0, posR, logicDetector, "RDetector", logicWorld, false, 0, checkOverlaps);
 
     fScoringVolume = logicDetector;
     return physWorld;
