@@ -8,6 +8,7 @@ class muon_PhysicsList: public G4VModularPhysicsList
   public:
     muon_PhysicsList();
    ~muon_PhysicsList();
+   void SetCuts();
 };
 
 #endif

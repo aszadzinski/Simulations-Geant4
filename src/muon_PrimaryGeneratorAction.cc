@@ -17,7 +17,7 @@ fParticleGun(0),
 fEnvelopeBox(0)
 {
   G4int n_particle = 1;
-  E0 = 500.*MeV;
+  E0 = 1000.*MeV;
   fParticleGun  = new G4ParticleGun(n_particle);
 
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
