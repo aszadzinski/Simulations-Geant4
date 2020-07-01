@@ -21,9 +21,9 @@ muon_PhysicsList::~muon_PhysicsList()
 
 void muon_PhysicsList::SetCuts()
 {
-  SetCutValue(0.07*mm, "proton");
-  SetCutValue(0.07*mm, "e-");
-  SetCutValue(0.07*mm, "e+");
-  SetCutValue(0.07*mm, "mu-");
-  SetCutValue(0.07*mm, "gamma");
+  SetCutValue(7*mm, "proton");
+  SetCutValue(7*mm, "e-");
+  SetCutValue(7*mm, "e+");
+  SetCutValue(7*mm, "mu-");
+  SetCutValue(7*mm, "gamma");
 }
