@@ -23,7 +23,9 @@ def animate(i):
         x = file.readlines()
         x_values = [ float(var[:-1]) for var in x]
     plt.cla()
-    plt.hist( x_values,histtype="step", bins=np.linspace(0,200,100),label="$N(E)$")
+    N,U,c = plt.hist( x_values,histtype="step", bins=np.linspace(0,200,100),label="$N(E)$")
+    mean = (N*U[:-1]).sum()/N.sum()
+    plt.title("$E_m$= {} MeV".format(round(mean,4)))
     plt.xlabel("$E [MeV]$")
     plt.ylabel("$Counts$")
     plt.legend()
