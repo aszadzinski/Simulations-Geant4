@@ -78,7 +78,10 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));
   fParticleGun1->SetParticleEnergy(Energy);
   fParticleGun1->GeneratePrimaryVertex(anEvent);
-
+  fParticleGun2->SetParticlePosition(G4ThreeVector(gX,gY,gZ));
+  fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(sX,sY,sZ));
+  fParticleGun2->SetParticleEnergy(Energy);
+  fParticleGun2->GeneratePrimaryVertex(anEvent);
 }
 
 void pet_PrimaryGeneratorAction::DefineCommands()
