@@ -32,7 +32,7 @@ void pet_RunAction::EndOfRunAction(const G4Run* run)
   if (nofEvents == 0) return;
 
   G4double edep  = fEdep.GetValue();
-  G4double edep2 = fEdep2.GetValue();
+  G4double edep2 = fEdep.GetValue();
   if (IsMaster()) {
     G4cout
      << G4endl

@@ -26,10 +26,10 @@ int main(int argc,char** argv)
   #else
       G4RunManager* runManager = new G4RunManager;
   #endif
-
-    runManager->SetUserInitialization(new pet_DetectorConstruction());
+    pet_DetectorConstruction* detector = new pet_DetectorConstruction();
+    runManager->SetUserInitialization(detector);
     runManager->SetUserInitialization(new pet_PhysicsList());
-    runManager->SetUserInitialization(new pet_ActionInitialization());
+    runManager->SetUserInitialization(new pet_ActionInitialization(detector));
 
     G4VisManager* visManager = new G4VisExecutive;
     visManager->Initialize();

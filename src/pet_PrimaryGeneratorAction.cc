@@ -12,15 +12,15 @@
 #include "cmath"
 #include "G4GenericMessenger.hh"
 
-pet_PrimaryGeneratorAction::pet_PrimaryGeneratorAction()
-: G4VUserPrimaryGeneratorAction(),
-fParticleGun1(0), fParticleGun2(0),
-fEnvelopeBox(0), fh(0*cm)
+pet_PrimaryGeneratorAction::pet_PrimaryGeneratorAction(pet_DetectorConstruction* MyDC)
+:myDetector(MyDC)
+
 {
   G4int n_particle = 1;
   E0 = 1*keV;
   fParticleGun1  = new G4ParticleGun(n_particle);
-    fParticleGun2  = new G4ParticleGun(n_particle);
+  fh = MyDC->GetHeight();
+  zz = MyDC->GetZ();
 
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
   G4String particleName;
@@ -28,15 +28,13 @@ fEnvelopeBox(0), fh(0*cm)
   fParticleGun1->SetParticleDefinition(particle);
   fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(0.,0.,1.));
   fParticleGun1->SetParticleEnergy(E0);
-  fParticleGun2->SetParticleDefinition(particle);
-  fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(0.,0.,-1.));
-  fParticleGun2->SetParticleEnergy(E0);
 }
 
 pet_PrimaryGeneratorAction::~pet_PrimaryGeneratorAction()
 {
   delete fParticleGun1;
-  delete fParticleGun2;
+  delete fMessenger;
+
 }
 
 void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
@@ -72,25 +70,13 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   gZ = R*cos(gTh);
 
   Energy = E0;
-  G4cout<<"En "<<Energy<<G4endl;
+  G4cout<<"En k"<<fh<<G4endl;
+  GetHeight(fh);
+  GetZ(zz);
 
-  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY,gZ));
+  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY+fh,gZ+zz));
   fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));
   fParticleGun1->SetParticleEnergy(Energy);
   fParticleGun1->GeneratePrimaryVertex(anEvent);
-  fParticleGun2->SetParticlePosition(G4ThreeVector(gX,gY,gZ));
-  fParticleGun2->SetParticleMomentumDirection(G4ThreeVector(sX,sY,sZ));
-  fParticleGun2->SetParticleEnergy(Energy);
-  fParticleGun2->GeneratePrimaryVertex(anEvent);
-}
-
-void pet_PrimaryGeneratorAction::DefineCommands()
-{
-  fMessenger = new G4GenericMessenger(this, "/pet/generator/", "PET params");
-
-  auto& hsource= fMessenger->DeclarePropertyWithUnit("hsource", "cm", fh, "source height");
-  hsource.SetParameterName("h",true);
-  //hsource.SetRange("h");
-  hsource.SetDefaultValue("1.");
 
 }

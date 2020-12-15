@@ -13,7 +13,7 @@ std::ofstream file;
 pet_EventAction::pet_EventAction(pet_RunAction* runAction)
 : G4UserEventAction(),
   fRunAction(runAction),
-  Edep(0.)
+  EdepA(0.), EdepB(0.),EntA(0),EntB(0)
 {
   file.open("./output.dat");
 }
@@ -44,8 +44,8 @@ void pet_EventAction::EndOfEventAction(const G4Event*)
 {
   if (EntA == 1 || EntB == 1)
   {
-    file<<Edep<<G4endl;
+    file<<EdepA<<" "<<EdepB<<" "<<EntA<<" "<<EntB<<" "<< hei <<" "<<zz <<G4endl;
   }
-  fRunAction->AddEdep(Edep);
-  G4cout<<"Edep="<<Edep<<G4endl;
+  fRunAction->AddEdep(EdepA);
+  G4cout<<"Edep="<<EdepA<<G4endl;
 }

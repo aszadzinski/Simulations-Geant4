@@ -3,6 +3,7 @@
 #include "pet_DetectorConstruction.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTypes.hh"
+#include "pet_PrimaryGeneratorAction.hh"
 
 #include "G4Step.hh"
 #include "G4Event.hh"
@@ -33,12 +34,14 @@ void pet_SteppingAction::UserSteppingAction(const G4Step* theStep)
   G4int lastParticle = 0;
   if(thePostPV !=0 ){ thePostPVname = thePostPV->GetName(); }
   if (theStep->GetTotalEnergyDeposit()==0) {return;}
+  fEventAction->SetHeight(pet_PrimaryGeneratorAction::GetHeight());
+  fEventAction->SetZ(pet_PrimaryGeneratorAction::GetZ());
 
   if (thePrePVname(0,9)=="ADetector")
   {
 
     fEventAction->SetEdepA(theStep->GetTotalEnergyDeposit());
-    fEventAction->SetEntA();
+    fEventAction->SetEntA(1);
     fEventAction->SetPosA(theTrack->GetPosition().x(),
                           theTrack->GetPosition().y(),
                           theTrack->GetPosition().z());
@@ -49,7 +52,7 @@ void pet_SteppingAction::UserSteppingAction(const G4Step* theStep)
     {
 
       fEventAction->SetEdepB(theStep->GetTotalEnergyDeposit());
-      fEventAction->SetEntB();
+      fEventAction->SetEntB(1);
       fEventAction->SetPosB(theTrack->GetPosition().x(),
                             theTrack->GetPosition().y(),
                             theTrack->GetPosition().z());

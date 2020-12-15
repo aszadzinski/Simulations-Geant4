@@ -3,6 +3,7 @@
 #include "G4NistManager.hh"
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
+#include "pet_DetectorMessenger.hh"
 #include "G4Box.hh"
 #include "G4Tubs.hh"
 #include "G4LogicalVolume.hh"
@@ -16,10 +17,11 @@
 pet_DetectorConstruction::pet_DetectorConstruction()
 : G4VUserDetectorConstruction(),
   fEdA(0), fEdB(0)
-{ }
+{ fMessenger = new pet_DetectorMessenger(this);}
 
 pet_DetectorConstruction::~pet_DetectorConstruction()
-{ }
+{
+delete fMessenger;}
 
 G4VPhysicalVolume* pet_DetectorConstruction::Construct()
 {  G4NistManager* man = G4NistManager::Instance();
