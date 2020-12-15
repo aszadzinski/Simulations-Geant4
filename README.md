@@ -1,4 +1,4 @@
-# Muon Detector - simulation
+# PET Detector - simulation
 
 ## Installation
 
@@ -10,4 +10,4 @@
 
 ## Starting simulation
 
-`./muon_run <optional macro file>`
+`./pet_run <optional macro file>`
