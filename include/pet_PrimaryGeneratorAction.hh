@@ -23,7 +23,11 @@ class pet_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
       if (num!=99) temp = num;
       return temp;
     }
-
+    inline static G4double GetDist(G4double num=99)  {
+      static double temp;
+      if (num!=99) temp = num;
+      return temp;
+    }
     inline static G4double GetZ(G4double num=99)  {
       static double temp;
       if (num!=99) temp = num;
@@ -44,7 +48,7 @@ class pet_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4ParticleGun*  fParticleGun1;
 // pointer a to G4 gun class
     G4Box* fEnvelopeBox;
-    G4double fh,zz;
+    G4double fh,zz,dist;
     G4double R2 = 640000000.;
     G4double d = 600.;
     G4GenericMessenger* fMessenger;

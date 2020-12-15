@@ -44,7 +44,7 @@ void pet_EventAction::EndOfEventAction(const G4Event*)
 {
   if (EntA == 1 || EntB == 1)
   {
-    file<<EdepA<<" "<<EdepB<<" "<<EntA<<" "<<EntB<<" "<< hei <<" "<<zz <<G4endl;
+    file<<EdepA<<" "<<EdepB<<" "<<EntA<<" "<<EntB<<" "<< hei <<" "<<zz <<" "<<dist<<G4endl;
   }
   fRunAction->AddEdep(EdepA);
   G4cout<<"Edep="<<EdepA<<G4endl;

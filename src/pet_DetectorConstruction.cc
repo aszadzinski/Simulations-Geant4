@@ -4,7 +4,9 @@
 #include "G4RunManager.hh"
 #include "G4NistManager.hh"
 #include "pet_DetectorMessenger.hh"
+#include "G4Orb.hh"
 #include "G4Box.hh"
+
 #include "G4Tubs.hh"
 #include "G4LogicalVolume.hh"
 #include "G4PVPlacement.hh"
@@ -16,7 +18,7 @@
 
 pet_DetectorConstruction::pet_DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fEdA(0), fEdB(0)
+  fEdA(0), fEdB(0),dist(14)
 { fMessenger = new pet_DetectorMessenger(this);}
 
 pet_DetectorConstruction::~pet_DetectorConstruction()
@@ -61,6 +63,7 @@ G4Material* cryst_mat   = nist->FindOrBuildMaterial("Lu2SiO5");
     G4double detBz = 50.8*mm, detBr = 50.8*mm;
     G4double sourcez = 4*mm, sourcer = 20*mm;
     G4double distAB = 14*cm;
+    distAB = dist;
 
 
     G4ThreeVector posA = G4ThreeVector(0, 0, -0.5*detAz-distAB);
@@ -68,7 +71,7 @@ G4Material* cryst_mat   = nist->FindOrBuildMaterial("Lu2SiO5");
 
     G4RotationMatrix* rotS = new G4RotationMatrix;
     rotS->rotateY(M_PI/2*rad);
-    G4ThreeVector posS = G4ThreeVector(0, 0, 0);
+    G4ThreeVector posS = G4ThreeVector(0, fh, fz);
 
     //World
     G4Box* worldShape = new G4Box("World", worldXY, worldXY, worldZ);
@@ -77,7 +80,7 @@ G4Material* cryst_mat   = nist->FindOrBuildMaterial("Lu2SiO5");
 
     //Source
     G4double tubePhi = 2.*M_PI;
-    G4Tubs* detectorShapeSource = new G4Tubs("Source", 0, sourcer/2, sourcez/2, 0., tubePhi);
+    G4Orb* detectorShapeSource = new G4Orb("Source",5*mm);
     G4LogicalVolume* logicSource = new G4LogicalVolume(detectorShapeSource, BC408, "Source");
     G4PVPlacement *physSource =  new G4PVPlacement(rotS, posS, logicSource, "Source", logicWorld, false, 0, checkOverlaps);
 

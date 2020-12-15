@@ -26,11 +26,12 @@ class pet_EventAction : public G4UserEventAction
     void SetEntB(G4int entb) { EntB=entb; }
     void SetHeight(G4double h){hei = h;}
     void SetZ(G4double z){zz = z;}
+    void SetDist(G4double z){dist = z;}
 
 
   private:
     pet_RunAction* fRunAction;
-    G4double        EdepA, EdepB, posAX,posAY,posAZ, posBX,posBY,posBZ,hei,zz;
+    G4double        EdepA, EdepB, posAX,posAY,posAZ, posBX,posBY,posBZ,hei,zz,dist;
     G4int           dFlagA=0;
     G4int           dFlagB=0;
     G4int  EntA, EntB;

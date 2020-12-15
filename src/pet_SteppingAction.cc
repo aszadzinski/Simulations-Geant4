@@ -36,6 +36,8 @@ void pet_SteppingAction::UserSteppingAction(const G4Step* theStep)
   if (theStep->GetTotalEnergyDeposit()==0) {return;}
   fEventAction->SetHeight(pet_PrimaryGeneratorAction::GetHeight());
   fEventAction->SetZ(pet_PrimaryGeneratorAction::GetZ());
+  fEventAction->SetDist(pet_PrimaryGeneratorAction::GetDist());
+
 
   if (thePrePVname(0,9)=="ADetector")
   {

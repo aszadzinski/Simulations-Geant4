@@ -13,6 +13,8 @@ class pet_DetectorConstruction : public G4VUserDetectorConstruction
     public:
         G4double GetHeight() {return fh;}
         void SetHeight(G4double h) {fh=h;}
+        G4double GetDist() {return dist;}
+        void SetDist(G4double h) {dist=h;}
         G4double GetZ() {return fz;}
         void SetZ(G4double h) {fz=h;}
         pet_DetectorConstruction();
@@ -25,6 +27,6 @@ class pet_DetectorConstruction : public G4VUserDetectorConstruction
         G4LogicalVolume*  fScoringVolume;
         G4LogicalVolume*  fEdA;
         G4LogicalVolume*  fEdB;
-        G4double fh,fz;
+        G4double fh,fz,dist;
 };
 #endif
