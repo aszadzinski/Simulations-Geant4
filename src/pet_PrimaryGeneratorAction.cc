@@ -42,7 +42,7 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   G4double envSizeXY = 0;
   G4double envSizeZ = 0;
-
+/*
   if (!fEnvelopeBox)
   {
     G4LogicalVolume* envLV = G4LogicalVolumeStore::GetInstance()->GetVolume("DetectorA");
@@ -56,7 +56,7 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   }
   else
   {
-  }
+  }*/
   R = G4UniformRand()*5*mm;
   sTh = G4UniformRand()*2*M_PI;
   sPhi = G4UniformRand()*M_PI;
@@ -69,14 +69,18 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   gX = R*sin(gTh)*cos(gPhi);
   gY = R*sin(gTh)*sin(gPhi);
   gZ = R*cos(gTh);
+  //dla h
+  ffh = round((G4UniformRand()*2-1)*fh);
+  // dla z
+  //zzz = round((G4UniformRand()*2-1)*zz/10)*10;
 
   Energy = E0;
-  G4cout<<"En k"<<fh<<G4endl;
-  GetHeight(fh);
+  //G4cout<<"En k"<<fh<<G4endl;
+  GetHeight(ffh);
   GetZ(zz);
   GetDist(dist);
 
-  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY+fh,gZ+zz));
+  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY+ffh,gZ+zz));
   fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));
   fParticleGun1->SetParticleEnergy(Energy);
   fParticleGun1->GeneratePrimaryVertex(anEvent);

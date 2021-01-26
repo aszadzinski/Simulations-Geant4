@@ -23,8 +23,11 @@ pet_EventAction::~pet_EventAction()
   file.close();
 }
 
-void pet_EventAction::BeginOfEventAction(const G4Event*)
+void pet_EventAction::BeginOfEventAction(const G4Event* env)
 {
+
+  if (!(env->GetEventID()%1000)) G4cout << "\n--> Begin of event: " << env->GetEventID() <<G4endl;
+
   EdepA = 0.;
   posAX = 0.;
   posAY = 0.;
@@ -47,5 +50,5 @@ void pet_EventAction::EndOfEventAction(const G4Event*)
     file<<EdepA<<" "<<EdepB<<" "<<EntA<<" "<<EntB<<" "<< hei <<" "<<zz <<" "<<dist<<G4endl;
   }
   fRunAction->AddEdep(EdepA);
-  G4cout<<"Edep="<<EdepA<<G4endl;
+  //G4cout<<"Edep="<<EdepA<<G4endl;
 }

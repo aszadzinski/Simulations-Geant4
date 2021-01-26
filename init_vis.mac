@@ -1,6 +1,8 @@
 /control/verbose 2
 /control/saveHistory
 /pet/d 14
+/pet/z 0
+/pet/h 0
 /run/verbose 2
 /run/numberOfThreads 1
 /run/initialize
