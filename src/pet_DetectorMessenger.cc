@@ -34,9 +34,18 @@ myDetector(Det)
   zz = new G4UIcmdWithADoubleAndUnit("/pet/z",this);
   zz->SetGuidance("alpha ang. [deg]");
   zz->SetDefaultUnit("cm");
+  zz0 = new G4UIcmdWithADoubleAndUnit("/pet/z0",this);
+  zz0->SetGuidance("alpha ang. [deg]");
+  zz0->SetDefaultUnit("cm");
   dist = new G4UIcmdWithADoubleAndUnit("/pet/d",this);
   dist->SetGuidance("alpha ang. [deg]");
   dist->SetDefaultUnit("cm");
+  deta = new G4UIcmdWithADoubleAndUnit("/pet/deta",this);
+  deta->SetGuidance("alpha ang. [deg]");
+  deta->SetDefaultUnit("cm");
+  detb = new G4UIcmdWithADoubleAndUnit("/pet/detb",this);
+  detb->SetGuidance("alpha ang. [deg]");
+  detb->SetDefaultUnit("cm");
 }
 
 pet_DetectorMessenger::~pet_DetectorMessenger()
@@ -60,5 +69,11 @@ void pet_DetectorMessenger::SetNewValue(G4UIcommand* command, G4String newValues
       myDetector->SetZ(zz->GetNewDoubleValue(newValues));
       else if(command==dist)
         myDetector->SetDist(zz->GetNewDoubleValue(newValues));
+      else if(command==zz0)
+        myDetector->SetZ0(zz0->GetNewDoubleValue(newValues));
+      else if(command==deta)
+        myDetector->SetDeta(deta->GetNewDoubleValue(newValues));
+      else if(command==detb)
+        myDetector->SetDetb(detb->GetNewDoubleValue(newValues));
 
 }

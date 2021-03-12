@@ -70,7 +70,7 @@ def animate(i):
 
     if sys.argv[2] == '1':
 
-        plt.hist(tmp3z, bins=500,)
+        plt.hist(tmp3z, bins=100,histtype='stepfilled',ec='k', alpha=0.3, density=False)
         plt.xlabel("Distance [mm]")
         plt.title("Entries: {}".format(len(tmp3z)))
         plt.ylabel("counts")

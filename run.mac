@@ -1,9 +1,18 @@
+# Zakres przesuniec zrodla
 /pet/z 0
+# Pozycja zrodla
+/pet/z0 0
+# Wysokosc zrodla
 /pet/h 0
+# Odleglosc miedzy detektorami
 /pet/d 14
+
+# Wymiary Detektorow
+/pet/deta 5.08
+/pet/detb 8.08
 
 /run/numberOfThreads 1
 /run/initialize
 
 
-/run/beamOn 10000
+/run/beamOn 1000
