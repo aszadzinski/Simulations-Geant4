@@ -1,3 +1,7 @@
+/pet/z 0
+/pet/h 0
+/pet/d 14
+
 /run/numberOfThreads 1
 /run/initialize
 

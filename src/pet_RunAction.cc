@@ -28,23 +28,7 @@ void pet_RunAction::BeginOfRunAction(const G4Run*)
 
 void pet_RunAction::EndOfRunAction(const G4Run* run)
 {
-  G4int nofEvents = run->GetNumberOfEvent();
-  if (nofEvents == 0) return;
 
-  G4double edep  = fEdep.GetValue();
-  G4double edep2 = fEdep.GetValue();
-  if (IsMaster()) {
-    G4cout
-     << G4endl
-     << "--------------------End of Global Run-----------------------"
-     << G4endl;
-  }
-
-  G4cout
-     << "->Sum Edep ="
-     << edep
-     <<"MeV?"
-     << G4endl;
 }
 
 void pet_RunAction::AddEdep(G4double edep)
