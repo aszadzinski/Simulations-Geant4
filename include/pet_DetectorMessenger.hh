@@ -32,6 +32,7 @@ virtual   void SetNewValue(G4UIcommand * command, G4String newValues);
 
 
   G4UIcmdWithADoubleAndUnit* height;
+  G4UIcmdWithADoubleAndUnit* height0;
     G4UIcmdWithADoubleAndUnit* deta;
     G4UIcmdWithADoubleAndUnit* detb;
     G4UIcmdWithADoubleAndUnit* zz;

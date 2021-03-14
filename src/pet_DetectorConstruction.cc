@@ -18,7 +18,7 @@
 
 pet_DetectorConstruction::pet_DetectorConstruction()
 : G4VUserDetectorConstruction(),
-  fEdA(0), fEdB(0),dist(14),deta(50.8),detb(50.8)
+  fEdA(0), fEdB(0),dist(14),deta(50.8),detb(50.8),fh0(0)
 { fMessenger = new pet_DetectorMessenger(this);}
 
 pet_DetectorConstruction::~pet_DetectorConstruction()
@@ -73,7 +73,7 @@ G4Material* cryst_mat   = nist->FindOrBuildMaterial("Lu2SiO5");
 
     G4RotationMatrix* rotS = new G4RotationMatrix;
     rotS->rotateY(M_PI/2*rad);
-    G4ThreeVector posS = G4ThreeVector(0, fh, zz0);
+    G4ThreeVector posS = G4ThreeVector(0, fh0, zz0);
 
     //World
     G4Box* worldShape = new G4Box("World", worldXY, worldXY, worldZ);

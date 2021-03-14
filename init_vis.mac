@@ -11,8 +11,10 @@
 /pet/z 0
 # Pozycja zrodla
 /pet/z0 0
-# Wysokosc zrodla
+# Zakres przesuniec zrodla H
 /pet/h 0
+# Wysokosc zrodla
+/pet/h0 0
 # Odleglosc miedzy detektorami
 /pet/d 14
 

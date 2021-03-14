@@ -72,16 +72,31 @@ def animate(i):
 
         plt.hist(tmp3z, bins=100,histtype='stepfilled',ec='k', alpha=0.3, density=False)
         plt.xlabel("Distance [mm]")
-        plt.title("Entries: {}".format(len(tmp3z)))
+        plt.title("Koincydencje")
+        #plt.title("Entries: {}".format(len(tmp3z)))
         plt.ylabel("counts")
 
     elif sys.argv[2] == '2':
         plt.hist(tmp1z,histtype='stepfilled', alpha=0.3, density=False, bins=100, ec="k",label='detector A')
         plt.hist(tmp2z,histtype='stepfilled', alpha=0.3, density=False, bins=100, ec="k",label='detector B')
-        plt.title("Entries: {}".format(len(tmp1z)))
+        #plt.title("Entries: {}".format(len(tmp1z)))
+        plt.title("Zliczenia na detektorach")
         plt.xlabel("Distance from the center [mm]")
         plt.ylabel("counts")
         plt.legend()
+    elif sys.argv[2] == '3':
+        plt.hist(tmp3h,histtype='stepfilled', alpha=0.3, density=False, bins=100, ec="k")
+        plt.xlabel("Height [mm]")
+        plt.ylabel("counts")
+        plt.title("Photon coincidence")
+        plt.savefig("Coi_height.pdf")
+    elif sys.argv[2] == '4':
+        plt.hist(tmp1h,histtype='stepfilled', alpha=0.3, density=False, bins=100, ec="k",label='detector A')
+        plt.hist(tmp2h,histtype='stepfilled', alpha=0.3, density=False, bins=100, ec="k",label='detector B')
+        plt.xlabel("Height above axis of the detectors [mm]")
+        plt.ylabel("counts")
+        plt.legend()
+        plt.savefig("B_height.pdf")
     #mean = (N*U[:-1]).sum()/N.sum()
     #plt.title("$E_m$= {} MeV".format(round(mean,4)))
     #plt.xlabel("$E [MeV]$")

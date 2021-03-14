@@ -20,6 +20,7 @@ pet_PrimaryGeneratorAction::pet_PrimaryGeneratorAction(pet_DetectorConstruction*
   E0 = 1*keV;
   fParticleGun1  = new G4ParticleGun(n_particle);
   fh = MyDC->GetHeight();
+  fh0 = MyDC->GetHeight0();
   zz = MyDC->GetZ();
   zz0 = MyDC->GetZ0();
   dist = MyDC->GetDist();
@@ -79,11 +80,11 @@ void pet_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
   Energy = E0;
   //G4cout<<"En k"<<fh<<G4endl;
-  GetHeight(ffh);
+  GetHeight(ffh+fh0);
   GetZ(zzz+zz0);
   GetDist(dist);
 
-  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY+ffh,gZ+zzz+zz0));
+  fParticleGun1->SetParticlePosition(G4ThreeVector(gX,gY+ffh+fh0,gZ+zzz+zz0));
   fParticleGun1->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));
   fParticleGun1->SetParticleEnergy(Energy);
   fParticleGun1->GeneratePrimaryVertex(anEvent);

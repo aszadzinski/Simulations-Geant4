@@ -28,6 +28,9 @@ myDetector(Det)
 // Generation Parameters
 
 
+  height0 = new G4UIcmdWithADoubleAndUnit("/pet/h0",this);
+  height0->SetGuidance("alpha ang. [deg]");
+  height0->SetDefaultUnit("cm");
   height = new G4UIcmdWithADoubleAndUnit("/pet/h",this);
   height->SetGuidance("alpha ang. [deg]");
   height->SetDefaultUnit("cm");
@@ -65,6 +68,8 @@ void pet_DetectorMessenger::SetNewValue(G4UIcommand* command, G4String newValues
    if(command==height)
     myDetector->SetHeight(height->GetNewDoubleValue(newValues));
 
+   else if(command==height0)
+    myDetector->SetHeight0(height0->GetNewDoubleValue(newValues));
     else if(command==zz)
       myDetector->SetZ(zz->GetNewDoubleValue(newValues));
       else if(command==dist)
