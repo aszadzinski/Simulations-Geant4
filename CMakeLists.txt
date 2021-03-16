@@ -22,6 +22,7 @@ set(PET_SCRIPTS
   init_vis.mac
   run.mac
   start.py
+  start_hz.py
   vis.mac)
 
 foreach(_script ${PET_SCRIPTS})

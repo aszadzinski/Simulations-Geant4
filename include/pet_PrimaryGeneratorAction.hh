@@ -48,7 +48,7 @@ class pet_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4ParticleGun*  fParticleGun1;
 // pointer a to G4 gun class
     G4Box* fEnvelopeBox;
-    G4double fh,zz,dist,ffh,zzz;
+    G4double fh,zz,dist,ffh,zzz,zz0,fh0;
     G4double R2 = 640000000.;
     G4double d = 600.;
     G4GenericMessenger* fMessenger;

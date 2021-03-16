@@ -1,1 +1,7 @@
-build/
+build*
+lab*
+*.zip
+*.pdf
+*.csv
+*.dat
+*.txt
