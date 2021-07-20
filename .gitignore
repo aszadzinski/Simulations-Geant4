@@ -1,4 +1,7 @@
-build/
-*.bck
+build*
+lab*
+*.zip
+*.pdf
+*.csv
 *.dat
-*cache*
+*.txt
