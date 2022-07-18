@@ -1,7 +1,14 @@
 build*
 lab*
+*.swp
 *.zip
 *.pdf
 *.csv
 *.dat
 *.txt
+*CMakeFiles*
+*Makefile
+*CMakeCache.txt
+*.macro
+*venv*
+*.cmake
