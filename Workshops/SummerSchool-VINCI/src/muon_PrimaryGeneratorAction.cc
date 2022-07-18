@@ -13,11 +13,10 @@
 
 muon_PrimaryGeneratorAction::muon_PrimaryGeneratorAction()
 : G4VUserPrimaryGeneratorAction(),
-fParticleGun(0),
-fEnvelopeBox(0)
+fParticleGun(0)
 {
   G4int n_particle = 1;
-  E0 = 30*MeV;
+  E0 = 300*MeV;
   fParticleGun  = new G4ParticleGun(n_particle);
 
   G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
@@ -33,41 +32,48 @@ muon_PrimaryGeneratorAction::~muon_PrimaryGeneratorAction()
   delete fParticleGun;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void muon_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 {
   G4double envSizeXY = 0;
   G4double envSizeZ = 0;
 
-
   // from spherical coord. Generate point on the sphere [th[0,90], phi[0,360]]
   R = 80*cm;
-  gTh = eliminate();//G4UniformRand()*M_PI/2;
-  gPhi = G4UniformRand()*2*M_PI;
-  sX = R*sin(gTh)*cos(gPhi);
+  gTh = eliminate(); 					// theta angle from real muon distribution (von Neumann method/elimination method)
+  gPhi = G4UniformRand()*2*M_PI; 			// random phi ang.
+
+  sX = R*sin(gTh)*cos(gPhi);				// random position on sphere surrounding detector
   sY = R*sin(gTh)*sin(gPhi);
   sZ = R*cos(gTh);
-  // solve z=sqrt(r^2-x^2-y^2), eq of surface z-z0 = df(x0,y0)/dx*(x-x0) + df(x0,y0)/dy*(y-y0)
-  //partial derivative
-  gX = G4UniformRand()*2*R-R;
+
+  // solved z=sqrt(r^2-x^2-y^2), eq of surface z-z0 = df(x0,y0)/dx*(x-x0) + df(x0,y0)/dy*(y-y0)  
+  // //partial derivative
+  gX = G4UniformRand()*2*R-R;				
   gY = G4UniformRand()*2*20*cm-20*cm;
   gZ = sZ + sX*(gX-sX)/sZ + sY*(gY-sY)/sZ;
 
+  // TODO
+  Energy = E0; 				// Random energy (from specyfic distribution)
 
-  Energy = E0*muonDist(gTh);//1.*GeV/(Energy*Energy);
-  //G4cout<<"En "<<Energy<<G4endl;
-  G4double size = 0.8;
-  G4double x0 = size * 20*cm * (G4UniformRand()-0.5);
-  G4double y0 = size * 20*cm * (G4UniformRand()-0.5);
-  G4double z0 = -0.5 * 40*cm;
 
-  fParticleGun->SetParticlePosition(G4ThreeVector(sX+gX,sY+gY,sZ));
-  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));
-  fParticleGun->SetParticleEnergy(Energy);
+  fParticleGun->SetParticlePosition(G4ThreeVector(sX+gX,sY+gY,sZ));		// Setting particlegun position
+  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(-sX,-sY,-sZ));	// Setting direction
+  fParticleGun->SetParticleEnergy(Energy);					// Setting Energy
   fParticleGun->GeneratePrimaryVertex(anEvent);
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 G4double muon_PrimaryGeneratorAction::muonDist(G4double theta)
 {
+  // Angular cosmic ray distribution https://doi.org/10.1142/S0217751X18501750
+
   G4double D;
   D = (sqrt(R2*R2/(d*d)*cos(theta)*cos(theta)+2*R2/d +1)-R2/d * cos(theta));
   return 1/(D*D);
@@ -75,6 +81,7 @@ G4double muon_PrimaryGeneratorAction::muonDist(G4double theta)
 
 G4double muon_PrimaryGeneratorAction::eliminate()
 {
+  // von Neumann method. Drawing variable from muonDist()
   G4double random1, random2;
   do
   {

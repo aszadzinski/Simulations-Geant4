@@ -15,11 +15,11 @@ class muon_EventAction : public G4UserEventAction
     virtual void BeginOfEventAction(const G4Event* event);
     virtual void EndOfEventAction(const G4Event* event);
 
-    void SetEdep(G4double edep) { Edep += edep; }
     void SetERD(G4double edep) { ERD += edep; }
     void SetELD(G4double edep) { ELD += edep; }
     void SetETD(G4double edep) { ETD += edep; }
     void SetEBD(G4double edep) { EBD += edep; }
+
     void SetPos(G4double x,G4double y, G4double z) { posX=x;posY=y;posZ=z;}
     void SetdFlag(G4int flag) { dFlag=flag; }
 

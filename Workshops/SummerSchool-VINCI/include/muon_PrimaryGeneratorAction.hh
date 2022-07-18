@@ -24,7 +24,7 @@ class muon_PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     G4double gX, gY, gZ, R;
     G4double Energy,E0;
     G4ParticleGun*  fParticleGun; // pointer a to G4 gun class
-    G4Box* fEnvelopeBox;
+
     G4double R2 = 640000000.;
     G4double d = 600.;
 

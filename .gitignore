@@ -8,7 +8,6 @@ lab*
 *.txt
 *CMakeFiles*
 *Makefile
-*CMakeCache.txt
 *.macro
 *venv*
 *.cmake
