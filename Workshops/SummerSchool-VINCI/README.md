@@ -11,3 +11,5 @@
 ## Starting simulation
 
 `./muon_run <optional macro file>`
+
+![energy](output.png)

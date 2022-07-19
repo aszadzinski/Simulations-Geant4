@@ -56,8 +56,8 @@ void muon_PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
   gY = G4UniformRand()*2*20*cm-20*cm;
   gZ = sZ + sX*(gX-sX)/sZ + sY*(gY-sY)/sZ;
 
-  // TODO
-  Energy = E0; 				// Random energy (from specyfic distribution)
+  //Energy = G4RandGauss::shoot(E0,10); 				// Random energy (from specyfic distribution)
+  Energy = E0*muonDist(gTh); 				// Random energy (from specyfic distribution)
 
 
   fParticleGun->SetParticlePosition(G4ThreeVector(sX+gX,sY+gY,sZ));		// Setting particlegun position

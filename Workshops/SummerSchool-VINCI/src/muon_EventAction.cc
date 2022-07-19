@@ -46,7 +46,7 @@ void muon_EventAction::EndOfEventAction(const G4Event* evt)
 {
   G4int nevt = evt->GetEventID();
   G4int threadID =  G4Threading::G4GetThreadId();
-  if (!(nevt%10000)) G4cout<<"\n-> Begin of event: "<<nevt<<" Worker "<<threadID<<G4endl;
+  if (!(nevt%200000)) G4cout<<"\n-> Begin of event: "<<nevt<<" Worker "<<threadID<<G4endl;
   if (ELD > 0 || ERD > 0 || ETD > 0 || EBD > 0)
   {
    streams[threadID]<<ELD<<" "<<ERD<<" "<<ETD<<" "<<EBD<<G4endl;
