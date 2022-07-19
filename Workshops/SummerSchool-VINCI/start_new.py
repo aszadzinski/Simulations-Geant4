@@ -21,9 +21,11 @@ def animate(i):
     global nlines
     with open("output.dat","r") as file:
         x = file.readlines()
-        x_values = [ float(var[:-1]) for var in x]
+        x_values = [ var.split() for var in x]
+        X = np.array(x_values, dtype=float).T
+        E = X[0] + X[1]
     plt.cla()
-    N,U,c = plt.hist( x_values,histtype="step", bins=np.linspace(0,200,100),label="$N(E)$")
+    N,U,c = plt.hist( E,histtype="step", bins=np.linspace(0,200,100),label="$N(E)$")
     mean = (N*U[:-1]).sum()/N.sum()
     plt.title("$E_m$= {} MeV".format(round(mean,4)))
     plt.xlabel("$E [MeV]$")

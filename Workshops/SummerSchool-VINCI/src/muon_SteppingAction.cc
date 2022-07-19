@@ -39,7 +39,6 @@ void muon_SteppingAction::UserSteppingAction(const G4Step* theStep)
   {
 
         G4double a = theStep->GetTotalEnergyDeposit();
-//	std::cout<<"LL "<<a<<std::endl;
         fEventAction->SetELD(a);
 
   }
@@ -47,7 +46,6 @@ void muon_SteppingAction::UserSteppingAction(const G4Step* theStep)
   {
 
         G4double a = theStep->GetTotalEnergyDeposit();
-//	std::cout<<"RR "<<a<<std::endl;
         fEventAction->SetERD(a);
 
   }
@@ -55,7 +53,6 @@ void muon_SteppingAction::UserSteppingAction(const G4Step* theStep)
   {
 
         G4double a = theStep->GetTotalEnergyDeposit();
-	std::cout<<"TTT "<<a<<std::endl;
         fEventAction->SetETD(a);
 
   }
@@ -63,7 +60,6 @@ void muon_SteppingAction::UserSteppingAction(const G4Step* theStep)
   {
 
         G4double a = theStep->GetTotalEnergyDeposit();
-	std::cout<<"BBB "<<a<<std::endl;
         fEventAction->SetEBD(a);
 
   }

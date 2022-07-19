@@ -13,6 +13,8 @@
 #include "G4UIExecutive.hh"
 #include "Randomize.hh"
 
+#include <iostream>
+
 int main(int argc,char** argv)
 {
     G4UIExecutive* ui = 0;
@@ -23,6 +25,8 @@ int main(int argc,char** argv)
 
   #ifdef G4MULTITHREADED
       G4MTRunManager* runManager = new G4MTRunManager;
+      runManager->SetNumberOfThreads(3);
+	std::cout<<"USING MTHREADING"<<std::endl;
   #else
       G4RunManager* runManager = new G4RunManager;
   #endif

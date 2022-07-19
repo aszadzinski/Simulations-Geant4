@@ -6,7 +6,7 @@ lab*
 *.csv
 *.dat
 *.txt
-*CMakeFiles*
+*CMakeFiles/
 *Makefile
 *.macro
 *venv*
