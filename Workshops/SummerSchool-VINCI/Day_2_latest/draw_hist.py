@@ -17,7 +17,7 @@ y_values = []
 
 nlines = 0
 
-print("\nUSAGE: python3 start_new.py <data file>\n")
+print("\nUSAGE: python3 draw_hist.py <data file>\n")
 with open(argv[1],"r") as file:
     x = file.readlines()
     x_values = [ var.split() for var in x]
@@ -41,9 +41,9 @@ ax[0,0].hist( E,histtype="step", bins=bins,label="CH0+CH1")
 ax[0,1].hist(Tdet,histtype="step", bins=bins,label="Top det.")
 ax[0,1].hist(Bdet,histtype="step", bins=bins,label="Bottom det")
 
-ax[1,0].hist(coiT,histtype="step", bins=bins,label="Coi. CH1&CH2&CH3")
-ax[1,0].hist(coiB,histtype="step", bins=bins,label="Coi. CH1&CH2&CH3")
-ax[1,1].hist(coiTB,histtype="step", bins=bins,label="Coi. CH1&CH2&CH3&CH4")
+ax[1,0].hist(coiT,histtype="step", bins=bins,label="Coi. CH0&CH1&CH2")
+ax[1,0].hist(coiB,histtype="step", bins=bins,label="Coi. CH0&CH1&CH3")
+ax[1,1].hist(coiTB,histtype="step", bins=bins,label="Coi. CH0&CH1&CH2&CH3")
 
 
 
@@ -55,6 +55,9 @@ ax[1,0].set_xlabel("$E [MeV]$")
 ax[1,0].set_ylabel("$Counts$")
 ax[1,1].set_xlabel("$E [MeV]$")
 ax[1,1].set_ylabel("$Counts$")
+ax[0,0].set_xlim(0,140)
+ax[1,0].set_xlim(0,140)
+ax[1,1].set_xlim(0,140)
 ax[0,0].legend()
 ax[0,1].legend()
 ax[1,0].legend()

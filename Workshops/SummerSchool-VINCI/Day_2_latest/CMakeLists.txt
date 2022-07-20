@@ -21,7 +21,7 @@ target_link_libraries(muon_run ${Geant4_LIBRARIES})
 set(MUON_SCRIPTS
   init_vis.mac
   run.mac
-  start_new.py
+  draw_hist.py
   vis.mac)
 
 foreach(_script ${MUON_SCRIPTS})
