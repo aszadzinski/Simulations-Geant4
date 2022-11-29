@@ -1,5 +1,5 @@
 # Zakres przesuniec zrodla
-/pet/z 0
+/pet/z 14
 # Pozycja zrodla
 /pet/z0 0
 # Zakres przesuniec zrodla H
@@ -17,4 +17,4 @@
 /run/initialize
 
 
-/run/beamOn 1000
+/run/beamOn 1000000
